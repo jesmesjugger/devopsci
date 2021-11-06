@@ -1,0 +1,12 @@
+version: 2.1
+
+jobs:
+  build:
+    docker: 
+      -  image: alpine:3.7
+    steps:
+      -  run:
+           name: test-my-code
+           command: |
+             echo  'First demo with circle Ci'
+             echo 'Amazing trying out new CI/CD pipeline tools'
