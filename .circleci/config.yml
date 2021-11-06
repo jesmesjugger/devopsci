@@ -20,4 +20,4 @@ jobs:
       - run:
           name: unique-container
           command: |
-            node -v
+            nginx:alpine -v
