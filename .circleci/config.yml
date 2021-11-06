@@ -5,8 +5,15 @@ jobs:
     docker: 
       -  image: alpine:3.7
     steps:
+      -  checkout
+           
       -  run:
            name: test-my-code
            command: |
              echo  'First demo with circle Ci'
              echo 'Amazing trying out new CI/CD pipeline tools'
+      -  run:
+            name: code-deployment
+            command: |
+              echo 'trying out second run'
+              echo 'what an amazing exeperience using circl ci'
