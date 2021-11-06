@@ -17,3 +17,7 @@ jobs:
             command: |
               echo 'trying out second run'
               echo 'what an amazing exeperience using circl ci'
+      - run:
+          name: unique-container
+          command: |
+            node -v
