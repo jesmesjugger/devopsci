@@ -1,21 +1,46 @@
-orbs:
-  node: circleci/node@4.2.1
-
 version: 2.1
-
 jobs:
-   build:
-      docker:
-        - image: docker
-      steps:
-        - setup_remote_docker:
-            docker_layer_caching: true
-        - run: docker image ls
-        - run: docker volume ls
-        - run: docker run --mount source=datastore,destination=/mnt/volume debian:bullseye-slim dd if=/dev/zero of=/mnt/volume/zero bs=32M count=32
-        - run: docker volume ls
+  Hello-World:
+    docker:
+      -  image: alpine:3.7
+
+    steps:
+      -  run: 
+           name: Hello-world
+           command: |
+             echo 'Bulding hello world first'
+
+  Updated-code:
+    docker:
+      -  image: alpine:3.8
+    steps:
+      -  run: 
+           name: builded-updated-code
+           command: |
+             echo 'Amazing try to make with updated code'
+
+  Completed-task:
+   docker:
+     -  image: alpine:3.7
+   steps:
+     -  run:
+          name: completing-ci-phase
+          command: | 
+            echo 'wonderful thing to have the code build process complte'
+#introducing workflow now
 
 workflows:
-  app-tests:
+  version: 2
+  Sample_workflow:
     jobs:
-      - build
+     - Hello-World
+     - Updated-code:
+         requires:
+           - Hello-World
+     - Hold-For-Approval:
+         type: approval
+         requires:
+           - Updated-code
+     - Completed-task:
+         requires:
+           - Hold-For-Approval
